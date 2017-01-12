@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ==================== -->
+    <!-- = Classic OS Style = -->
+    <!-- ==================== -->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/vhCalendar;component/Themes/Luna.Style.xaml"/>
+        <ResourceDictionary Source="/vhCalendar;component/Themes/Classic.Brushes.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+</ResourceDictionary>

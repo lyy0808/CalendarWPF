@@ -1,0 +1,425 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:vhCalendar">
+
+    <!-- ============== -->
+    <!-- = Luna Style = -->
+    <!-- ============== -->
+    <Style TargetType="{x:Type local:Calendar}">
+        <Style.Resources>
+            <!--remove focus border-->
+            <Style x:Key="ClearFocusVisualStyle" TargetType="Control">
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </Style>
+
+            <!--header selector-->
+            <Style x:Key="HeaderButtonStyle" TargetType="Button">
+                <Setter Property="FocusVisualStyle" Value="{StaticResource ClearFocusVisualStyle}" />
+                <Setter Property="SnapsToDevicePixels" Value="true"/>
+                <Setter Property="OverridesDefaultStyle" Value="true"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="local:DateButton">
+                            <Border x:Name="ButtonBorder"  
+                                    BorderThickness="0"
+                                    Background="{DynamicResource {x:Static local:ResourceKeys.ButtonTransparentBrushKey}}"
+                                    BorderBrush="{DynamicResource {x:Static local:ResourceKeys.ButtonTransparentBrushKey}}">
+                                <ContentPresenter Margin="2"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  RecognizesAccessKey="True" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsKeyboardFocused" Value="true">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static local:ResourceKeys.HeaderFocusedBorderBrushKey}}" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static local:ResourceKeys.HeaderFocusedForegroundBrushKey}}" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static local:ResourceKeys.HeaderPressedForegroundBrushKey}}" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="false">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static local:ResourceKeys.HeaderNormalForegroundBrushKey}}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--left direction button-->
+            <Style x:Key="LeftArrowButtonStyle" TargetType="RepeatButton">
+                <Setter Property="FocusVisualStyle" Value="{StaticResource ClearFocusVisualStyle}" />
+                <Setter Property="SnapsToDevicePixels" Value="true"/>
+                <Setter Property="OverridesDefaultStyle" Value="true"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RepeatButton">
+                            <Border x:Name="Border"  
+                                  CornerRadius="2" 
+                                  BorderThickness="0"
+                                  Background="{DynamicResource {x:Static local:ResourceKeys.ButtonTransparentBrushKey}}"
+                                  BorderBrush="{DynamicResource {x:Static local:ResourceKeys.ButtonTransparentBrushKey}}">
+                                <Grid>
+                                    <ContentPresenter Margin="2"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  RecognizesAccessKey="True"/>
+                                    <Path x:Name="LeftArrowPath" 
+                                      Margin="2,-2,0,0" 
+                                      Height="10" Width="6" 
+                                      VerticalAlignment="Center" HorizontalAlignment="Left" 
+                                      StrokeThickness="0.5" Stroke="{DynamicResource {x:Static local:ResourceKeys.ArrowBorderBrushKey}}" 
+                                      Stretch="Fill" 
+                                      Data="M288.75,232.25 L288.75,240.625 L283,236.625 z"
+                                      Fill="{DynamicResource {x:Static local:ResourceKeys.ArrowNormalFillBrushKey}}">
+                                    </Path>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsKeyboardFocused" Value="true">
+                                    <Setter TargetName="LeftArrowPath" Property="Fill" Value="{DynamicResource {x:Static local:ResourceKeys.ArrowFocusedFillBrushKey}}" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonTransparentBrushKey}}" />
+                                    <Setter TargetName="LeftArrowPath" Property="Fill" Value="{DynamicResource {x:Static local:ResourceKeys.ArrowFocusedFillBrushKey}}" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="false">
+                                    <Setter TargetName="LeftArrowPath" Property="Fill" Value="{DynamicResource {x:Static local:ResourceKeys.ArrowNormalFillBrushKey}}" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonTransparentBrushKey}}" />
+                                    <Setter TargetName="LeftArrowPath" Property="Fill" Value="{DynamicResource {x:Static local:ResourceKeys.ArrowPressedFillBrushKey}}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--right direction button-->
+            <Style x:Key="RightArrowButtonStyle" TargetType="RepeatButton">
+                <Setter Property="FocusVisualStyle" Value="{StaticResource ClearFocusVisualStyle}" />
+                <Setter Property="SnapsToDevicePixels" Value="true"/>
+                <Setter Property="OverridesDefaultStyle" Value="true"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RepeatButton">
+                            <Border x:Name="Border"  
+                                  CornerRadius="2" 
+                                  BorderThickness="0"
+                                  Background="{DynamicResource {x:Static local:ResourceKeys.ButtonTransparentBrushKey}}"
+                                  BorderBrush="{DynamicResource {x:Static local:ResourceKeys.ButtonTransparentBrushKey}}">
+                                <Grid>
+                                    <ContentPresenter Margin="2"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"
+                                                  RecognizesAccessKey="True"/>
+                                    <Path x:Name="RightArrowPath" 
+                                      Margin="0,-2,0,0" 
+                                      Height="10" Width="6" 
+                                      VerticalAlignment="Center" HorizontalAlignment="Right" 
+                                      Stretch="Fill" 
+                                      StrokeThickness="0.5" Stroke="{DynamicResource {x:Static local:ResourceKeys.ArrowBorderBrushKey}}" 
+                                      Data="M282.875,231.875 L282.875,240.375 L288.625,236 z"
+                                      Fill="{DynamicResource {x:Static local:ResourceKeys.ArrowNormalFillBrushKey}}">
+                                    </Path>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsKeyboardFocused" Value="true">
+                                    <Setter TargetName="RightArrowPath" Property="Fill" Value="{DynamicResource {x:Static local:ResourceKeys.ArrowFocusedFillBrushKey}}" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonTransparentBrushKey}}" />
+                                    <Setter TargetName="RightArrowPath" Property="Fill" Value="{DynamicResource {x:Static local:ResourceKeys.ArrowFocusedFillBrushKey}}" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="false">
+                                    <Setter TargetName="RightArrowPath" Property="Fill" Value="{DynamicResource {x:Static local:ResourceKeys.ArrowNormalFillBrushKey}}" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonTransparentBrushKey}}" />
+                                    <Setter TargetName="RightArrowPath" Property="Fill" Value="{DynamicResource {x:Static local:ResourceKeys.ArrowPressedFillBrushKey}}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--day name labels-->
+            <Style x:Key="DayNameStyle" TargetType="Label">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static local:ResourceKeys.DayNamesForegroundBrushKey}}"/>
+            </Style>
+
+            <!--week number labels-->
+            <Style x:Key="WeekNumberStyle" TargetType="Label">
+                <Setter Property="Foreground" Value="{DynamicResource {x:Static local:ResourceKeys.WeekColumnForegroundBrushKey}}"/>
+            </Style>
+
+            <!--inner grid buttons-->
+            <Style x:Key="InsideButtonsStyle" TargetType="Button">
+                <Setter Property="FocusVisualStyle" Value="{StaticResource ClearFocusVisualStyle}" />
+                <Setter Property="SnapsToDevicePixels" Value="true"/>
+                <Setter Property="OverridesDefaultStyle" Value="true"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="local:DateButton">
+                            <Border x:Name="Border" 
+                                    SnapsToDevicePixels="True"
+                                    CornerRadius="4" Margin="2"
+                                    BorderBrush="{DynamicResource {x:Static local:ResourceKeys.ButtonTransparentBrushKey}}" 
+                                    Background="{TemplateBinding Background}">
+                                <Grid>
+                                    <ContentPresenter Margin="0,0,1,1" 
+                                                          HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                                          RecognizesAccessKey="True"/>
+                                    <Path Name="BlackOutPath"                                               Margin="0,0,1,1"                                               Width="10" Height="10"                                               HorizontalAlignment="Center" VerticalAlignment="Center"                                               Stretch="Fill" Fill="Transparent"                                               Data="F1 M 352.248,97.8266L 349.82,101.038L 352.208,104.173L 350.861,104.173L 349.445,102.117C 349.356,101.988 349.25,101.827 349.127,101.633L 349.1,101.633C 349.076,101.67 348.965,101.831 348.768,102.117L 347.324,104.173L 345.992,104.173L 348.456,101.061L 346.098,97.8266L 347.444,97.8266L 348.838,99.9964C 348.942,100.158 349.042,100.323 349.14,100.492L 349.17,100.492L 350.972,97.8266L 352.248,97.8266 Z "/>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <!--normal state-->
+                                <Trigger Property="IsMouseOver" Value="false">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonNormalForegroundBrushKey}}" />
+                                    <Setter TargetName="Border" Property="BorderThickness" Value="0.0" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonNormalBorderBrushKey}}" />
+                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonNormalBackgroundBrushKey}}" />
+                                </Trigger>
+                                <!--focused state-->
+                                <Trigger Property="IsKeyboardFocused" Value="true">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonFocusedForegroundBrushKey}}" />
+                                    <Setter TargetName="Border" Property="BorderThickness" Value="0.5" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonFocusedBorderBrushKey}}" />
+                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonFocusedBackgroundBrushKey}}" />
+                                </Trigger>
+                                <!--defaulted state-->
+                                <Trigger Property="IsTodaysDate" Value="true">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonDefaultedForegroundBrushKey}}" />
+                                    <Setter TargetName="Border" Property="BorderThickness" Value="0.5" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonDefaultedBorderBrushKey}}" />
+                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonDefaultedBackgroundBrushKey}}" />
+                                </Trigger>
+                                <!--mouseover state-->
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonFocusedForegroundBrushKey}}" />
+                                    <Setter TargetName="Border" Property="BorderThickness" Value="0.5" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonFocusedBorderBrushKey}}" />
+                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonFocusedBackgroundBrushKey}}" />
+                                </Trigger>
+                                <!--selected state-->
+                                <Trigger Property="IsSelected" Value="true">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonSelectedForegroundBrushKey}}" />
+                                    <Setter TargetName="Border" Property="BorderThickness" Value="0.5" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonSelectedBorderBrushKey}}" />
+                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonSelectedBackgroundBrushKey}}" />
+                                </Trigger>
+                                <!--pressed state-->
+                                <Trigger Property="IsPressed" Value="true">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonPressedForegroundBrushKey}}" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonPressedBorderBrushKey}}" />
+                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonPressedBackgroundBrushKey}}" />
+                                </Trigger>
+                                <!--disabled state-->
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonDisabledForegroundBrushKey}}" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonDisabledBorderBrushKey}}" />
+                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonDisabledBackgroundBrushKey}}" />
+                                </Trigger>
+                                <!--current month state-->
+                                <Trigger Property="IsCurrentMonth" Value="false">
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonDisabledForegroundBrushKey}}" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonNormalBorderBrushKey}}" />
+                                    <Setter TargetName="Border" Property="Background" Value="{DynamicResource {x:Static local:ResourceKeys.ButtonNormalBackgroundBrushKey}}" />
+                                </Trigger>
+                                <!--BlackOut state-->
+                                <Trigger Property="IsBlackOut" Value="true">
+                                    <Setter TargetName="BlackOutPath" Property="Fill" Value="#55FF0000" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Style.Resources>
+
+        <!--control template-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:Calendar}">
+                    <Border Background="{DynamicResource {x:Static local:ResourceKeys.ControlBackgroundBrushKey}}" 
+                            BorderBrush="{DynamicResource {x:Static local:ResourceKeys.ControlBorderBrushKey}}" BorderThickness="0.5" 
+                            SnapsToDevicePixels="True">
+                        <Grid Name="ControlBorder" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!--header box-->
+                            <Border x:Name="Part_HeaderBorder" 
+                                    Grid.Column="0" 
+                                    Margin="0" Height="22" 
+                                    VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                                    Background="{DynamicResource {x:Static local:ResourceKeys.HeaderNormalBackgroundBrushKey}}"
+                                    BorderThickness="1" BorderBrush="{DynamicResource {x:Static local:ResourceKeys.HeaderNormalBorderBrushKey}}"                                    
+                                    SnapsToDevicePixels="True">
+                            </Border>
+
+                            <!--date header-->
+                            <local:DateButton Name="Part_TitleButton" 
+                                    Style="{StaticResource HeaderButtonStyle}" 
+                                    Grid.Row="0"                                              
+                                    Height="18" 
+                                    Margin="1" Padding="2"
+                                    VerticalAlignment="Center" HorizontalAlignment="Center"
+                                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" 
+                                    FontWeight="Bold" FontFamily="Arial" FontSize="12" 
+                                    FlowDirection="LeftToRight" 
+                                    Focusable="True"
+                                    SnapsToDevicePixels="True">
+                            </local:DateButton>
+
+                            <!--left arrow button-->
+                            <RepeatButton Name="Part_PreviousButton" 
+                                    Style="{StaticResource LeftArrowButtonStyle}" 
+                                    Grid.Row="0"                                               
+                                    Height="18" Width="18" 
+                                    Margin="12,0,0,0" Padding="0"
+                                    VerticalAlignment="Center" HorizontalAlignment="Left" 
+                                    VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                                    Background="Transparent" 
+                                    BorderBrush="Transparent" 
+                                    BorderThickness="0"
+                                    SnapsToDevicePixels="True">
+                            </RepeatButton>
+
+                            <!--right arrow button-->
+                            <RepeatButton Name="Part_NextButton" 
+                                    Style="{StaticResource RightArrowButtonStyle}" 
+                                    Grid.Row="0"
+                                    Height="18" Width="18"                                               
+                                    Margin="0,0,12,0" Padding="0"
+                                    VerticalAlignment="Center" HorizontalAlignment="Right" 
+                                    VerticalContentAlignment="Center" HorizontalContentAlignment="Center"                 
+                                    Background="Transparent"
+                                    BorderBrush="Transparent" 
+                                    BorderThickness="0"
+                                    SnapsToDevicePixels="True">
+                            </RepeatButton>
+
+                            <!--button grids-->
+                            <Grid x:Name="Part_AnimationContainer" 
+                                  Grid.Row="1"                                  
+                                  Width="auto" Height="auto" 
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                  SnapsToDevicePixels="True">
+                                <!--month elements container-->
+                                <Grid Name="Part_MonthContainer">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="0"/>
+                                    </Grid.RowDefinitions>
+                                    <Border x:Name="Part_WeekBorder" 
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                            Grid.Column="0" 
+                                            Grid.Row="0" Grid.RowSpan="2" 
+                                            Margin="0"
+                                            Background="{DynamicResource {x:Static local:ResourceKeys.WeekColumnBackgroundBrushKey}}"
+                                            SnapsToDevicePixels="True">
+                                    </Border>
+                                    <!--day names border-->
+                                    <Border x:Name="Part_DayBorder" 
+                                            Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" 
+                                            Margin="0"                                            
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                                            Height="18"
+                                            Background="{DynamicResource {x:Static local:ResourceKeys.DayNamesBackgroundBrushKey}}"
+                                            BorderThickness="0.5" BorderBrush="{DynamicResource {x:Static local:ResourceKeys.DayNamesBorderBrushKey}}"
+                                            SnapsToDevicePixels="True">
+                                    </Border>
+                                    <!--day names grid-->
+                                    <UniformGrid Name="Part_DayGrid"
+                                                 Grid.Column="1" Grid.Row="0" 
+                                                 HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                                                 Rows="1" Columns="7" 
+                                                 Margin="0" 
+                                                 FlowDirection="LeftToRight"
+                                                 SnapsToDevicePixels="True"/>
+                                    <!--week number grid-->
+                                    <UniformGrid Name="Part_WeekGrid"
+                                                 Grid.Column="0" Grid.Row="1" 
+                                                 MinWidth="20"
+                                                 HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                                                 Rows="6" Columns="1" 
+                                                 Margin="0" 
+                                                 FlowDirection="LeftToRight"
+                                                 SnapsToDevicePixels="True"/>
+                                    <!--date buttons-->
+                                    <Grid Name="Part_ScrollTransitionGrid" 
+                                          Grid.Column="1" Grid.Row="1" Margin="0"
+                                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                          ClipToBounds="True" SnapsToDevicePixels="True">
+                                        <UniformGrid Name="Part_MonthGrid"
+                                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                 Rows="6" Columns="7" 
+                                                 Margin="0"
+                                                 FlowDirection="LeftToRight"
+                                                 SnapsToDevicePixels="True"/>
+                                        <Grid Name="Part_ScrollGrid" Visibility="Collapsed"
+                                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                                 Margin="0"
+                                                 FlowDirection="LeftToRight"
+                                                 SnapsToDevicePixels="True"/>
+                                    </Grid>
+                                </Grid>
+
+                                <!--year buttons-->
+                                <UniformGrid Name="Part_YearGrid" 
+                                             Margin="12"  
+                                             Columns="3" Rows="4" 
+                                             FlowDirection="LeftToRight" 
+                                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                             SnapsToDevicePixels="True"/>
+
+                                <!--decade buttons-->
+                                <UniformGrid Name="Part_DecadeGrid" 
+                                             Margin="2"
+                                             Columns="3" Rows="4" 
+                                             FlowDirection="LeftToRight"
+                                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                             SnapsToDevicePixels="True"/>
+                            </Grid>
+                            <!--footer-->
+                            <Grid Name="Part_FooterContainer" Grid.Row="2">
+                                <Border x:Name="Part_CurrentDateBorder" MinHeight="18" Height="auto"
+                                        Margin="0"
+                                        Background="{DynamicResource {x:Static local:ResourceKeys.FooterBackgroundBrushKey}}" 
+                                        BorderThickness="0.5" BorderBrush="{DynamicResource {x:Static local:ResourceKeys.FooterBorderBrushKey}}"
+                                        SnapsToDevicePixels="True">
+                                </Border>
+                                <!--current date panel-->
+                                <StackPanel Name="Part_CurrentDatePanel"
+                                            MinHeight="18" 
+                                            HorizontalAlignment="Center" VerticalAlignment="Stretch"
+                                            SnapsToDevicePixels="True">
+                                    <TextBlock Name="Part_CurrentDateText" 
+                                               Margin="2" Padding="2" Foreground="{DynamicResource {x:Static local:ResourceKeys.FooterForegroundBrushKey}}"
+                                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                                               SnapsToDevicePixels="True">Today:</TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

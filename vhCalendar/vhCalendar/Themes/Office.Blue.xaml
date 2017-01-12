@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- =========================== -->
+    <!-- = Office 2007 Blue Style = -->
+    <!-- =========================== -->
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/vhCalendar;component/Themes/Office.Style.xaml"/>
+        <ResourceDictionary Source="/vhCalendar;component/Themes/Office.Blue.Brushes.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    
+</ResourceDictionary>

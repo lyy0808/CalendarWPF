@@ -1,0 +1,130 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:vhCalendar">
+
+    <!-- ========================= -->
+    <!-- = Luna Metallic Brushes = -->
+    <!-- ========================= -->
+
+    <!--control-->
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ControlBorderBrush}">#AEAEC6</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ControlBackgroundBrush}">White</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonTransparentBrush}">Transparent</Brush>
+
+
+    <!--date button normal-->
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonNormalForegroundBrush}">Black</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonNormalBorderBrush}">Transparent</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonNormalBackgroundBrush}">Transparent</Brush>
+    <!--date button focused-->
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonFocusedForegroundBrush}">#000034</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonFocusedBorderBrush}">#555555</Brush>
+    <LinearGradientBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonFocusedBackgroundBrush}" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#FEFEFE" Offset="0.0"/>
+                <GradientStop Color="#E9EAEF" Offset="0.5"/>
+                <GradientStop Color="#E3E5EE" Offset="0.6"/>
+                <GradientStop Color="#FCFCFD" Offset="1.0"/>
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <!--date button selected-->
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonSelectedForegroundBrush}">#214967</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonSelectedBorderBrush}">#666666</Brush>
+    <LinearGradientBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonSelectedBackgroundBrush}" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#FDFDFD" Offset="0.0"/>
+                <GradientStop Color="#EAEAEA" Offset="0.5"/>
+                <GradientStop Color="#E6E6E6" Offset="0.6"/>
+                <GradientStop Color="#D7D7D7" Offset="1.0"/>
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <!--date button pressed-->
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonPressedForegroundBrush}">#282828</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonPressedBorderBrush}">#333333</Brush>
+    <LinearGradientBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonPressedBackgroundBrush}" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#EDEDED" Offset="0.0"/>
+                <GradientStop Color="#E3E3E3" Offset="0.5"/>
+                <GradientStop Color="#DADADA" Offset="0.6"/>
+                <GradientStop Color="#D7D7D7" Offset="1.0"/>
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <!--date button defaulted-->
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonDefaultedForegroundBrush}">#000034</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonDefaultedBorderBrush}">#437EB8</Brush>
+    <LinearGradientBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonDefaultedBackgroundBrush}" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#FDFDFD" Offset="0.0"/>
+                <GradientStop Color="#EAEAEA" Offset="0.5"/>
+                <GradientStop Color="#DADADA" Offset="0.6"/>
+                <GradientStop Color="#D7D7D7" Offset="1.0"/>
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <!--date button disabled-->
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonDisabledForegroundBrush}">Silver</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonDisabledBorderBrush}">Transparent</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ButtonDisabledBackgroundBrush}">Transparent</Brush>
+
+    <!--week column background-->
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=WeekColumnBackgroundBrush}">#F4F4F4</Brush>
+
+
+    <!--day name bar-->
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=DayNamesBorderBrush}">#AEAEC6</Brush>
+    <LinearGradientBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=DayNamesBackgroundBrush}" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#FEFEFE" Offset="0.0"/>
+                <GradientStop Color="#F2F2F2" Offset="1.0"/>
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+
+    <!--header button-->
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=HeaderNormalBorderBrush}">#AEAEC6</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=HeaderFocusedBorderBrush}">#AEAEC6</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=HeaderNormalForegroundBrush}">#666666</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=HeaderFocusedForegroundBrush}">#999999</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=HeaderPressedForegroundBrush}">#333333</Brush>
+    <LinearGradientBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=HeaderNormalBackgroundBrush}" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#F6F7F9" Offset="0.0"/>
+                <GradientStop Color="#F1F1F3" Offset="0.4"/>
+                <GradientStop Color="#E7E9EE" Offset="0.6"/>
+                <GradientStop Color="#D3D3E0" Offset="1.0"/>
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+
+    <!--footer-->
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=FooterBorderBrush}">#AEAEC6</Brush>
+    <LinearGradientBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=FooterBackgroundBrush}" StartPoint="0,0" EndPoint="0,1">
+        <GradientBrush.GradientStops>
+            <GradientStopCollection>
+                <GradientStop Color="#F2F2F2" Offset="0.0"/>
+                <GradientStop Color="#F6F6F6"  Offset="0.4"/>
+                <GradientStop Color="#F8F8F8" Offset="0.6"/>
+                <GradientStop Color="#FDFDFD" Offset="1.0"/>
+            </GradientStopCollection>
+        </GradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+
+    <!--navigation button arrow-->
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ArrowBorderBrush}">#AA000000</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ArrowNormalFillBrush}">#666666</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ArrowFocusedFillBrush}">#999999</Brush>
+    <Brush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type local:ResourceKeys}, ResourceId=ArrowPressedFillBrush}">#333333</Brush>
+
+</ResourceDictionary>

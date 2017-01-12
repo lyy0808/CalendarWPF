@@ -1,0 +1,29 @@
+﻿<Window x:Class="DatePickerDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:vc="clr-namespace:vhCalendar;assembly=vhCalendar"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+
+        <vc:Calendar Name="Cld" 
+                         HorizontalAlignment="Center"
+                     Background="LightGray"
+                         Width="450" Height="220"
+                         Margin="4"     
+                         FontSize="12" FontFamily="Sans Serif"      
+                         ShowDaysOfAllMonths="True"
+                         SelectionMode="Multiple" 
+                         FooterVisibility="Visible" 
+                         WeekColumnVisibility="Visible" 
+                         HeaderHeight="22" 
+                         IsTodayHighlighted="True"
+                         IsAnimated="True"
+                         AdornDrag="True" 
+                         AllowDrag="True" 
+                         HeaderFontSize="12"
+                         HeaderFontWeight="DemiBold">
+            
+         
+        </vc:Calendar>
+    </Grid>
+</Window>
